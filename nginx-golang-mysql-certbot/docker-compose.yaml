@@ -47,7 +47,7 @@ services:
     volumes:
     - ./certbot/www/:/var/www/certbot/:rw
     - ./certbot/letsencrypt/:/etc/letsencrypt/:rw
-    command: certbot certonly
+    command: ["certonly"]
 
 volumes:
   db-data:

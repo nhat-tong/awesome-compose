@@ -10,7 +10,7 @@ server {
     }
     
     location / {
-        return http://35.202.151.31;
+        proxy_pass   http://backend:8000;
     }
 
 }

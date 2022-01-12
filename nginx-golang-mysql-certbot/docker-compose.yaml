@@ -6,6 +6,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  
   db:
     # We use a mariadb image which supports both amd64 & arm64 architecture
     image: mariadb:10.6.4-focal
@@ -27,6 +28,7 @@ services:
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
     expose:
       - 3306
+  
   proxy:
     build: proxy
     ports:
@@ -38,6 +40,7 @@ services:
     - ./certbot:/var/www/certbot/:ro
     depends_on: 
       - backend
+
 volumes:
   db-data:
 secrets:

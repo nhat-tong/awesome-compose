@@ -2,7 +2,7 @@ server {
     listen       80;
     listen [::]:80;
 
-    server_name  app-52-51-8-156.nip.io;
+    server_name  app-35-202-151-31.nip.io;
     server_tokens off;
 
     location /.well-known/acme-challenge/ {
@@ -10,7 +10,7 @@ server {
     }
     
     location / {
-        return 301 https://app-52-51-8-156.nip.io$request_uri;
+        return http://35.202.151.31
     }
 
 }

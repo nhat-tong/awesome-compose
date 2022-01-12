@@ -10,7 +10,20 @@ server {
     }
     
     location / {
-        proxy_pass   http://backend:8000;
+        return 301 https://app-35-202-151-31.nip.io$request_uri;
     }
+}
 
+server {
+    listen 443 default_server ssl http2;
+    listen [::]:443 ssl http2;
+
+    server_name app-35-202-151-31.nip.io;
+
+    ssl_certificate /etc/nginx/ssl/live/app-35-202-151-31.nip.io/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/app-35-202-151-31.nip.io/privkey.pem;
+    
+    location / {
+    	proxy_pass http://backend:8000;
+    }
 }

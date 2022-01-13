@@ -5,7 +5,7 @@ USER www-data
 
 COPY --chown=www-data:www-data . /var/www/html
 
-VOLUME /var/lib/letsencrypt/.well-known/acme-challenge
+RUN mkdir -p /var/lib/letsencrypt
 
 WORKDIR /var/www/html
 

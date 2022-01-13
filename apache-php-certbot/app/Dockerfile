@@ -1,11 +1,11 @@
 FROM php:7.3-apache
 
+RUN mkdir -p /var/lib/letsencrypt
+
 # Switch to user www-data (non root)
 USER www-data
 
 COPY --chown=www-data:www-data . /var/www/html
-
-RUN mkdir -p /var/lib/letsencrypt
 
 WORKDIR /var/www/html
 

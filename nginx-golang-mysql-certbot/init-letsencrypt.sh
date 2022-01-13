@@ -5,14 +5,12 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-echo "Enter your domain: for ex: (app-34-71-48-21.nip.io)"
+echo "Enter your domain: for ex: app-34-71-48-21.nip.io domain2 domain3"
 read -a domains
 
 echo "Enter your data path: for ex: ./certbot"
 read data_path
 
-#domains=(app-35-202-151-31.nip.io)
-#data_path="./certbot"
 rsa_key_size=4096
 email="" # Adding a valid address is strongly recommended
 staging=1 # Set to 1 if you're testing your setup to avoid hitting request limits

@@ -7,13 +7,14 @@ services:
       - '443:443'
     volumes:
       - ./app:/var/www/html/
-      #- ./http.conf:/etc/apache2/sites-available/000-default.conf
-      #- ./https.conf:/etc/apache2/sites-available/default-ssl.conf
-      #- ./certbot/www/:/var/www/certbot/:ro
-      #- ./certbot/conf/:/etc/ssl/:ro
-  # certbot:
-  #   image: certbot/certbot:latest
-  #   volumes:
-  #   - ./certbot/www/:/var/www/certbot/:rw
-  #   - ./certbot/conf/:/etc/letsencrypt/:rw
+      - ./http.conf:/etc/apache2/sites-available/000-default.conf
+      # - ./https.conf:/etc/apache2/sites-available/default-ssl.conf
+      # - ./certbot/www/:/var/www/html/certbot/:ro
+      # - ./certbot/conf/:/etc/ssl/:ro
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+    - ./certbot/www/:/var/www/certbot/:rw
+    - ./certbot/conf/:/etc/letsencrypt/:rw
+    entrypoint: certbot certonly --webroot -w /var/www/certbot --staging --register-unsafely-without-email -d app-3-250-133-100.nip.io --agree-tos --force-renewal
       

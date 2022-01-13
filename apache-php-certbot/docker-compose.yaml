@@ -6,10 +6,10 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - ./app:/var/www/html/
+      #- ./app:/var/www/html/
       - ./http.conf:/etc/apache2/sites-available/000-default.conf
       # - ./https.conf:/etc/apache2/sites-available/default-ssl.conf
-      - ./certbot/www/:/var/www/html/.well-known/acme-challenge/:ro
+      - ./certbot/:/var/www/html/:ro
       # - ./certbot/conf/:/etc/ssl/:ro
   certbot:
     image: certbot/certbot:latest

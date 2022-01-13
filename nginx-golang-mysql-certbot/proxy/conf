@@ -10,7 +10,7 @@ server {
     }
     
     location / {
-        return 301 https://app-34-71-48-21.nip.io$request_uri;
+        return 301 https://$server_name$request_uri;
     }
 }
 
@@ -20,8 +20,8 @@ server {
 
     server_name app-34-71-48-21.nip.io;
 
-    ssl_certificate /etc/nginx/ssl/live/app-34-71-48-21.nip.io/fullchain.pem;
-    ssl_certificate_key /etc/nginx/ssl/live/app-34-71-48-21.nip.io/privkey.pem;
+    ssl_certificate /etc/nginx/ssl/live/$server_name/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/$server_name/privkey.pem;
     
     location / {
     	proxy_pass http://backend:8000;

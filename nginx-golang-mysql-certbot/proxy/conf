@@ -20,8 +20,8 @@ server {
 
     server_name app-18-170-121-194.nip.io;
 
-    ssl_certificate /etc/nginx/ssl/live/$server_name/fullchain.pem;
-    ssl_certificate_key /etc/nginx/ssl/live/$server_name/privkey.pem;
+    ssl_certificate /etc/nginx/ssl/live/app-18-170-121-194.nip.io/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/live/app-18-170-121-194.nip.io/privkey.pem;
     
     location / {
     	proxy_pass http://backend:8000;

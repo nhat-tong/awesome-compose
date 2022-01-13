@@ -1,6 +1,7 @@
 services:
   web:
     build: app
+    user: root
     ports: 
       - '80:80'
       - '443:443'

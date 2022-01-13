@@ -6,7 +6,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
 fi
 
 echo "Enter your domain: for ex: (app-34-71-48-21.nip.io)"
-read domains
+read -a domains
 
 echo "Enter your data path: for ex: ./certbot"
 read data_path

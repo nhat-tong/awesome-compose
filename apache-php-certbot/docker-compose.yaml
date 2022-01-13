@@ -9,7 +9,7 @@ services:
       - ./app:/var/www/html/
       - ./http.conf:/etc/apache2/sites-available/000-default.conf
       # - ./https.conf:/etc/apache2/sites-available/default-ssl.conf
-      - ./certbot/www/:/var/lib/letsencrypt/.well-known/acme-challenge/:ro
+      - ./certbot/www/:/var/lib/letsencrypt/:ro
       # - ./certbot/conf/:/etc/ssl/:ro
   certbot:
     image: certbot/certbot:latest

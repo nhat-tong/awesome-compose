@@ -4,6 +4,7 @@ server {
 
     server_name  app-18-134-140-135.nip.io;
     server_tokens off;
+
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
     }
@@ -23,6 +24,10 @@ server {
     ssl_certificate_key /etc/nginx/ssl/live/app-18-134-140-135.nip.io/privkey.pem;
     
     location / {
-    	proxy_pass http://backend:8000;
+    	proxy_pass http://web;
+    }
+
+    location /admin {
+    	proxy_pass http://phpmyadmin;
     }
 }

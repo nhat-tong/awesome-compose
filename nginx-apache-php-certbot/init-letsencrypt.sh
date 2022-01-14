@@ -43,7 +43,7 @@ echo
 
 
 echo "### Starting reverse proxy ..."
-docker-compose up --force-recreate -d web
+docker-compose up --force-recreate -d proxy
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
@@ -81,4 +81,4 @@ docker-compose run --rm --entrypoint "\
 echo
 
 echo "### Reloading reverse proxy ..."
-docker-compose exec web service apache2 reload
+docker-compose exec proxy service apache2 reload

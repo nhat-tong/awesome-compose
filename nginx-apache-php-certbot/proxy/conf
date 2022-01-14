@@ -1,33 +1,52 @@
-server {
-    listen       80;
-    listen [::]:80;
+worker_processes 1;
+ 
+events { worker_connections 1024; }
 
-    server_name  app-18-134-140-135.nip.io;
-    server_tokens off;
+http {
+ 
+    sendfile on;
 
-    location /.well-known/acme-challenge/ {
-        root /var/www/certbot;
-    }
+    server {
+        listen       80;
+        listen [::]:80;
+
+        server_name  app-18-170-121-194.nip.io;
+        server_tokens off;
+
+        location /.well-known/acme-challenge/ {
+            root /var/www/certbot;
+        }
     
-    location / {
-        return 301 https://$server_name$request_uri;
+        location / {
+            return 301 https://$server_name$request_uri;
+        }
     }
-}
+ 
+    server {
+        listen 443 default_server ssl http2;
+        listen [::]:443 ssl http2;
 
-server {
-    listen 443 default_server ssl http2;
-    listen [::]:443 ssl http2;
+        server_name app-18-170-121-194.nip.io;
 
-    server_name app-18-134-140-135.nip.io;
+        ssl_certificate /etc/nginx/ssl/live/app-18-170-121-194.nip.io/fullchain.pem;
+        ssl_certificate_key /etc/nginx/ssl/live/app-18-170-121-194.nip.io/privkey.pem;
+ 
+        location / {
+            proxy_pass         http://web:80;
+            proxy_redirect     off;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
 
-    ssl_certificate /etc/nginx/ssl/live/app-18-134-140-135.nip.io/fullchain.pem;
-    ssl_certificate_key /etc/nginx/ssl/live/app-18-134-140-135.nip.io/privkey.pem;
-    
-    location / {
-    	proxy_pass http://web;
-    }
-
-    location /admin {
-    	proxy_pass http://phpmyadmin;
+        location /admin {
+            proxy_pass         http://phpmyadmin:80;
+            proxy_redirect     off;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+            proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header   X-Forwarded-Host $server_name;
+        }
     }
 }

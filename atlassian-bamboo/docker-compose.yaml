@@ -9,6 +9,8 @@ services:
     ports:
     - 8085:8085
     - 54663:54663
+    depends_on:
+    - postgres
   
   bamboo-agent:
     container_name: bamboo-agent
@@ -16,6 +18,22 @@ services:
     environment:
     - BAMBOO_SERVER=bamboo-server
     - bambooVolume:/var/atlassian/application-data/bamboo
+    depends_on:
+    - bamboo-server
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    volumes:
+    - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=bamboo
+      - POSTGRES_DB=bamboo
+    ports:
+      - "5432:5432"
+    restart: always
 
 volumes:
   bambooVolume:
+  db-data:

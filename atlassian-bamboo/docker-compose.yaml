@@ -22,6 +22,7 @@ services:
     container_name: bamboo-agent
     image: atlassian/bamboo-agent-base
     environment:
+    - TZ=Europe/Paris
     - BAMBOO_SERVER=http://52.56.238.221:8085/agentServer/
     - bambooAgentVolume:/var/atlassian/application-data/bamboo-agent
     depends_on:
@@ -33,9 +34,10 @@ services:
     volumes:
     - db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=bamboo
-      - POSTGRES_DB=bamboo
+    - TZ=Europe/Paris
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=bamboo
+    - POSTGRES_DB=bamboo
     ports:
       - "5432:5432"
     restart: always

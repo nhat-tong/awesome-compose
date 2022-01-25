@@ -25,7 +25,7 @@ services:
     #- ./wrapper.conf:/home/bamboo/bamboo-agent-home/conf/wrapper.conf
     environment:
     - BAMBOO_SERVER=http://bamboo-server:8085/agentServer/
-    - bambooAgentVolume:/var/atlassian/application-data/bamboo
+    - bambooAgentVolume:/var/atlassian/application-data/bamboo-agent
     depends_on:
     - bamboo-server
 

@@ -21,11 +21,11 @@ services:
   bamboo-agent:
     container_name: bamboo-agent
     image: atlassian/bamboo-agent-base
-    volumes:
-    - ./wrapper.conf:/home/bamboo/bamboo-agent-home/conf/wrapper.conf
+    #volumes:
+    #- ./wrapper.conf:/home/bamboo/bamboo-agent-home/conf/wrapper.conf
     environment:
     - BAMBOO_SERVER=http://bamboo-server:8085/agentServer/
-    - bambooAgentVolume:/home/bamboo/bamboo-agent-home
+    - bambooAgentVolume:/var/atlassian/application-data/bamboo
     depends_on:
     - bamboo-server
 

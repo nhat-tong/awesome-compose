@@ -3,7 +3,7 @@ version: '3.8'
 services:
   bamboo-server:
     container_name: bamboo-server
-    image: atlassian/bamboo
+    image: atlassian/bamboo:8.1.1
     volumes:
     - bambooVolume:/var/atlassian/application-data/bamboo
     ports:
@@ -27,7 +27,7 @@ services:
   
   # bamboo-agent:
   #   container_name: bamboo-agent
-  #   image: atlassian/bamboo-agent-base
+  #   image: atlassian/bamboo-agent-base:8.1.1
   #   environment:
   #   - TZ=Europe/Paris
   #   - SECURITY_TOKEN=5UBZHCQk2HLzJnQZib0C

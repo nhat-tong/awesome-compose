@@ -22,7 +22,7 @@ services:
     container_name: bamboo-agent
     image: atlassian/bamboo-agent-base
     environment:
-    - BAMBOO_SERVER=bamboo-server
+    - BAMBOO_SERVER=http://bamboo-server:8085/agentServer/
     - bambooVolume:/var/atlassian/application-data/bamboo
     depends_on:
     - bamboo-server

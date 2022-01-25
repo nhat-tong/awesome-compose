@@ -23,7 +23,7 @@ services:
     image: atlassian/bamboo-agent-base
     environment:
     - BAMBOO_SERVER=http://bamboo-server:8085/agentServer/
-    - bambooVolume:/var/atlassian/application-data/bamboo
+    - bambooAgentVolume:/var/atlassian/application-data/bamboo
     depends_on:
     - bamboo-server
 
@@ -42,4 +42,5 @@ services:
 
 volumes:
   bambooVolume:
+  bambooAgentVolume:
   db-data:

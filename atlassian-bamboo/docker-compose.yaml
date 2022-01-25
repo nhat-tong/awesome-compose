@@ -25,16 +25,16 @@ services:
     depends_on:
     - postgres
   
-  # bamboo-agent:
-  #   container_name: bamboo-agent
-  #   image: atlassian/bamboo-agent-base:8.1.1
-  #   environment:
-  #   - TZ=Europe/Paris
-  #   - SECURITY_TOKEN=5UBZHCQk2HLzJnQZib0C
-  #   - BAMBOO_SERVER=http://bamboo-server:8085/agentServer/
-  #   - bambooAgentVolume:/var/atlassian/application-data/bamboo-agent
-  #   depends_on:
-  #   - bamboo-server
+  bamboo-agent:
+    container_name: bamboo-agent
+    image: atlassian/bamboo-agent-base:8.1.1
+    environment:
+    - TZ=Europe/Paris
+    - SECURITY_TOKEN=5UBZHCQk2HLzJnQZib0C
+    - BAMBOO_SERVER=http://bamboo-server:8085/agentServer/
+    - bambooAgentVolume:/var/atlassian/application-data/bamboo-agent
+    depends_on:
+    - bamboo-server
 
   postgres:
     container_name: postgres

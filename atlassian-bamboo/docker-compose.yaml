@@ -46,8 +46,8 @@ services:
     - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=bamboo
     - POSTGRES_DB=bamboo
-    ports:
-      - "5432:5432"
+    expose:
+    - 5432
     restart: always
 
   xld:

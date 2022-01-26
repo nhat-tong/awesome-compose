@@ -50,7 +50,31 @@ services:
       - "5432:5432"
     restart: always
 
+  xld:
+    container_name: xld
+    image: xebialabs/xl-deploy:10.3
+    ports:
+    - 4516:4516
+    volumes:
+    - xldVolume:/opt/xebialabs/xl-deploy-server
+    environment:
+    - ACCEPT_EULA=Y
+    - ADMIN_PASSWORD=xebialabs
+
+  xlr:
+    container_name: xlr
+    image: xebialabs/xl-release:10.3
+    ports:
+    - 5516:5516
+    volumes:
+    - xlrVolume:/opt/xebialabs/xl-release-server
+    environment:
+    - ACCEPT_EULA=Y
+    - ADMIN_PASSWORD=xebialabs
+
 volumes:
   bambooVolume:
   bambooAgentVolume:
+  xldVolume:
+  xlrVolume:
   db-data:

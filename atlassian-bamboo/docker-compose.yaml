@@ -72,6 +72,12 @@ services:
     - ACCEPT_EULA=Y
     - ADMIN_PASSWORD=xebialabs
 
+  mailhog:
+    container_name: mailserver
+    image: mailhog/mailhog:v1.0.1
+    ports:
+    - 8025:8025
+
 volumes:
   bambooVolume:
   bambooAgentVolume:

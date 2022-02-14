@@ -1,5 +1,8 @@
 FROM nginx:1.13-alpine
 
+RUN mkdir -p /etc/nginx/sites-available \
+     && mkdir -p /etc/nginx/sites-enabled
+
 COPY web.conf /etc/nginx/sites-available/web.c96d0576d41c.mylabserver.com
 
 COPY admin.conf /etc/nginx/sites-available/admin.c96d0576d41c.mylabserver.com
